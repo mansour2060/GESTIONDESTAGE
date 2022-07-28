@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>gestion de stage</title>
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'buildings.png'%}" type="image/x-icon">
+  <style>
+    body {
+      background-color: #f4f3f3;
+      font-family: Lucida Console;
+
+
+    }
+  </style>
+</head>{% block content %}
+
+<body>
+  <form>
+
+    <div align="center">
+      <div class="jumbotron">
+        <h2>CHECK LES DEMANDE DE STAGE</h2>
+        <button type="button" onclick="window.open('http://127.0.0.1:8000/gestion/list/', '_blank');"
+          class="btn btn-primary"> <img src="{% static 'return.png'%}" width="25px" height="25px"></button>
+
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Nom</label>
+          <input type="email" class="form-control" id="inputEmail4" value="{{x.name}}" readonly>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Prenom</label>
+          <input type="text" class="form-control" id="inputPassword4" value="{{x.prenom}}" readonly>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputAddress">Début de stage</label>
+        <input type="text" class="form-control" id="inputAddress" value="{{x.debutstage}}" readonly>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputAddress2">Fin de stage</label>
+        <input type="text" class="form-control" id="inputAddress2" value="{{x.fintage}}" readonly>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">email</label>
+          <input type="text" class="form-control" id="inputCity" value="{{x.email}}" readonly>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState">service</label>
+          <input type="text" class="form-control" id="inputPassword4" value="{{x.service}}" readonly>
+
+        </div>
+        <div class="form-group col-md-2">
+          <label>sexe</label>
+          <input type="text" class="form-control" id="inputPassword4" value="{{x.sexe}}" readonly>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <label class="form-label" for="customFile">CV</label>:
+          <a href="http://127.0.0.1:8000/gestion/media/{{x.cv}}"><img src="{% static 'eye.png'%}" width="25px"
+              height="25px"></a>
+
+
+        </div>
+      </div>
+  </form>
+  <table>
+    <tr>
+      <td>
+        <form action="{% url 'accept' x.id %}" method="post" class="d-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success"><img src="{% static 'verified.png'%}" width="25px"
+              height="25px">
+            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+          </button>
+        </form> <a href="{% url 'accept_stagier' x.id %}" class="btn text-secondary px-0">
+          <i class="far fa-edit fa-lg"></i>
+        </a>
+      </td>
+      <td>&nbsp;&nbsp;&nbsp;</td>
+      <td>
+        <form action="{% url 'stagier_delete' x.id %}" method="post" class="d-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger"><img src="{% static 'trash.png'%}" width="25px" height="25px">
+            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+          </button>
+        </form> <a href="{% url 'stagier_update' x.id %}" class="btn text-secondary px-0">
+          <i class="far fa-edit fa-lg"></i>
+        </a>
+      </td>
+    </tr>
+  </table>
+  </div>
+  {% endblock content %}
+</body>
+
+</html>

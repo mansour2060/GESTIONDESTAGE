@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>gestion de stage</title>
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'buildings.png'%}" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <style>
+    body {
+      background-color: #f4f3f3;
+      font-family: Lucida Console;
+    }
+  </style>
+  <script>
+    function ok() {
+      alert("Bien!")
+      alert(" vérifiez votre adresse e-mail pour voir si vous êtes accepté")
+    }
+  </script>
+</head>
+
+<body>
+  <div class="all">
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div align="center">
+        <div class="jumbotron">
+          <h2>APPLY UN DEMANDE DE STAGE</h2>
+
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Nom</label>
+            <input type="text" name='nom' class="form-control" id="inputEmail4" placeholder="nom">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Prenom</label>
+            <input type="text" name="prenom" class="form-control" id="inputPassword4" placeholder="prenom">
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputAddress">Début de stage</label>
+          <input type="date" name='debutstage' class="form-control" id="inputAddress">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputAddress2">Fin de stage</label>
+          <input type="date" name='finstage' class="form-control" id="inputAddress2">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">email</label>
+            <input type="email" name="email" class="form-control" id="inputCity">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">domaine </label>
+            <select id="inputState" class="form-control" name="domaine ">
+              <option value="informatique">informatique </option>
+              <option value='Secrétariat'>Secrétariat de Direction</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label>sexe</label>
+            <select id="inputState" class="form-control" name="sexe">
+              <option value="masculin">masculin</option>
+              <option value="féminin ">féminin</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <label class="form-label" for="customFile">CV</label>
+            <input type="file" name="file" class="custom-file-input" id="inputGroupFile01">
+
+          </div>
+        </div>
+        <button type="submit" onclick="ok()" class="btn btn-primary"><img src="{% static 'clipboard.png'%}" width="25px"
+            height="25px"></button>
+    </form>
+  </div>
+  </div>
+
+</body>
+
+</html>

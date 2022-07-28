@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>gestion de stage</title>
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'buildings.png'%}" type="image/x-icon">
+  <style>
+    body {
+      background-color: #f4f3f3;
+      font-family: Lucida Console;
+
+    }
+
+    #ok {
+      background-color: transparent;
+      border: none;
+      text-align: center;
+
+
+    }
+  </style>
+
+</head>
+
+<body>{% block content %}{% load static %}
+
+
+  <div class="jumbotron" align="center">
+    <h2>LIST DU DEMANDE DE STAGE</h2>
+
+    <div class="input-group mb-3" align="center">
+      <label for="basic-url" class="form-label">Nombre de demandes accepté</label><input type="text" id="ok"
+        class="form-control" id="basic-url" aria-describedby="basic-addon3" value="{{number}}">
+
+    </div>
+
+    <table>
+      <tr>
+        <td>
+          <button type="button" onclick="window.open('http://127.0.0.1:8000/gestion/list/', '_blank');"
+            class="btn btn-primary"><img src="{% static 'return.png'%}" width="25px" height="25px"></button>
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td>
+          <form action="{%url 'debut'%}" method="post" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger"><img src="{% static 'verified.png'%}" width="25px"
+                height="25px">
+            </button>
+          </form>
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td> <a class="btn btn-info" href="{% url 'pdf_download' %}" target="_blank"><img src="{% static 'pdf.png'%}"
+              width="25px" height="25px"></a></td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td>
+          <form action="{%url 'sendall'%}" method="post" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success"><img src="{% static 'mail.png'%}" width="25px" height="25px">
+            </button>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <ol type="1">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Prenom</th>
+            <th>nom</th>
+            <th colspan="3">domaine</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for stagier in stagier_list %}
+          <tr>
+            <td>{{stagier.name}}</td>
+            <td>{{stagier.prenom}}</td>
+            <td>{{stagier.service}}</td>
+            <td>
+
+              <form action="{% url 'return' stagier.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-info"><img src="{% static 'x-mark.png'%}" width="25px"
+                    height="25px">
+                  <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                </button>
+              </form> <a href="{% url 'return_stagier' stagier.id %}" class="btn text-secondary px-0">
+                <i class="far fa-edit fa-lg"></i>
+              </a>
+            </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+</body>
+
+</html>
+</ol>{% endblock content %}
+</body>
+
+</html>
