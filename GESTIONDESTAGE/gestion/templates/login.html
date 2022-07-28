@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>gestion de stage</title>
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'buildings.png'%}" type="image/x-icon">
+  <style>
+    body {
+      background-color: #f4f3f3;
+      font-family: Lucida Console;
+
+    }
+
+    .log {
+      width: 50%;
+      position: relative;
+      left: 25%;
+      right: 25%;
+    }
+  </style>
+</head>
+
+<body>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="jumbotron">
+      <h2 align="center">Admin only</h2>
+    </div>
+    <div class="log" align="center">
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example1">USERNAME</label>
+
+        <input type="text" id="form2Example1" name="user" class="form-control" />
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">PASSWORD</label>
+
+        <input type="password" id="form2Example2" name="pass" class="form-control" />
+      </div><br>
+
+      <button type="submit" class="btn btn-primary btn-block mb-4"><img src="{% static 'enter.png'%}" width="25px"
+          height="25px"></button>
+
+
+    </div>
+    </div>
+  </form>
+</body>
+
+</html>

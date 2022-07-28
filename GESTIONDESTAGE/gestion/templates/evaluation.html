@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 14px;
+            font-family: Lucida Console;
+
+        }
+
+        .header {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #007cae;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 20px 0px 20px;
+        }
+
+        .title span {
+            color: #007cae;
+        }
+
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            /*margin-left: 40%;*/
+        }
+
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333;
+            /* old IE */
+            background-color: #fff;
+            /* Modern Browsers */
+        }
+
+        table {
+            font-size: 30px;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        .add {
+            width: 60px;
+            height: 35px;
+            font-size: 25px;
+
+        }
+    </style>
+</head>
+
+<body>
+    {% load static%}
+    <form action="{% url 'evaluation_update' stagier.id %}" method="post" class="d-inline">
+        {% csrf_token %}
+        <h2 align="center">FICHE D'EVALUATION DU STAGIAIRE</h2>
+        <hr>
+        <label for="">Nom et prénom du stagiaire :</label><input type="text" value="{{stagier.name}}" readonly><br>
+        <label for="">Option :</label><input type="text" value="{{stagier.Option}}" readonly><br>
+        <label for="">Adresse du lieu de stage :</label><input type="text" name="Adresse"
+            value="{{stagier.Adresse}}"><br>
+        <label for="">Nom et prénom du Maître de stage :</label><input type="text" name="Maître"
+            value="{{stagier.nameMaître}}"><br>
+        <label for="">Période de stage :</label><input type="text" value="{{stagier.Période}}" readonly><br>
+        <br>
+        <center>
+            <table border="1">
+                <tr>
+                    <th> critères</th>
+                    <th> Appréciation</th>
+
+
+                </tr>
+                <tr>
+                    <td>&nbsp; Assiduité</td>
+                    <td>&nbsp; <input type="number" name="Assiduité" class="add" id="N1" max="4" min="0"
+                            value="{{stagier.Assiduité}}" step="0.5"> /4</td>
+                </tr>
+                <tr>
+                    <td>&nbsp; Initiative</td>
+                    <td>&nbsp; <input type="number" name="Initiative" class="add" id="N2" max="4" min="0"
+                            value="{{stagier.Initiative}}" step="0.5"> /4</td>
+                </tr>
+                <tr>
+                    <td>&nbsp; Communication</td>
+                    <td>&nbsp; <input type="number" name="Communication" class="add" id="N3" max="3" min="0"
+                            value="{{stagier.Communication}}" step="0.5"> /3</td>
+                </tr>
+                <tr>
+                    <td>&nbsp; Esprit d'analyse</td>
+                    <td>&nbsp; <input type="number" name="Esprit" class="add" id="N4" max="3" min="0"
+                            value="{{stagier.Esprit}}" step="0.5"> /3</td>
+                </tr>
+                <tr>
+                    <td>&nbsp; Connaissances professionnelles</td>
+                    <td>&nbsp; <input type="number" name="Connaissances" class="add" id="N5" max="6" min="0"
+                            value="{{stagier.Connaissances}}" step="0.5"> /6</td>
+                </tr>
+                <tr>
+                    <td>&nbsp; Total</td>
+                    <td>&nbsp; <input type="text" value="{{stagier.Total}}" name="Total" class="add" readonly> /20</td>
+                </tr>
+
+            </table>
+        </center>
+        <h4>Observations complémentaires sur le stagiaire</h4>
+        <textarea class="form-control" name="Observations" style="resize:none" cols="160"
+            rows="7">{{stagier.Observations }}</textarea><br>
+        <br>
+        <label for="">Fait a:</label><label>{{date }}</label><br>
+
+        <center>
+            <table>
+                <tr>
+                    <td><button type="submit" class="btn btn-success"><img src="{% static 'file.png'%}" width="25px"
+                                height="25px">
+                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                        </button>
+    </form> <a href="{% url 'Ev_update' stagier.id %}" class="btn text-secondary px-0">
+        <i class="far fa-edit fa-lg"></i>
+    </a></td>
+    <td>
+        <form action="{% url 'pdf' stagier.id %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger"><img src="{% static 'pdf.png'%}" width="25px" height="25px">
+                <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+            </button>
+        </form> <a href="{% url 'pdf_update' stagier.id %}" class="btn text-secondary px-0">
+            <i class="far fa-edit fa-lg"></i>
+        </a>
+    </td>
+    </tr>
+    </table>
+    </center>
+</body>
+
+</html>

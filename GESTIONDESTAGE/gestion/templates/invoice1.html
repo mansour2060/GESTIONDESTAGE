@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html onmouseover="count()">
+
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 14px;
+            font-family: Lucida Console;
+
+        }
+
+        .header {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #007cae;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 20px 0px 20px;
+        }
+
+        .title span {
+            color: #007cae;
+        }
+
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            /*margin-left: 40%;*/
+        }
+
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333;
+            /* old IE */
+            background-color: #fff;
+            /* Modern Browsers */
+        }
+
+        table {
+            font-size: 30px;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        .add {
+            width: 60px;
+            height: 35px;
+            font-size: 25px;
+
+        }
+    </style>
+    <script>
+        function count() {
+            result = document.getElementById('N1').value + "+" + document.getElementById('N2').value + "+" + document.getElementById('N3').value + "+" + document.getElementById('N4').value + "+" + document.getElementById('N5').value
+            document.getElementById('E').value = result
+            document.getElementById('today').innerHTML = new Date().toJSON().split("T")[0];
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+    {% load static%}
+
+    <h2 align="center">FICHE D'EVALUATION DU STAGIAIRE</h2>
+    <hr>
+    <label for="">Nom et prénom du stagiaire :</label>{{stagier.name}}<br>
+    <label for="">Option :</label>{{stagier.Option}}<br>
+    <label for="">Adresse du lieu de stage :</label>{{stagier.Adresse}}<br>
+    <label for="">Nom et prénom du Maître de stage :</label>{{stagier.nameMaître}}<br>
+    <label for="">Période de stage :</label>{{stagier.Période}}<br>
+    <br>
+    <center>
+        <table border="1">
+            <tr>
+                <th> critères</th>
+                <th> Appréciation</th>
+
+
+            </tr>
+            <tr>
+                <td>&nbsp; Assiduité</td>
+                <td>&nbsp; {{stagier.Assiduité}} /4</td>
+            </tr>
+            <tr>
+                <td>&nbsp; Initiative</td>
+                <td>&nbsp; {{stagier.Initiative}}/4</td>
+            </tr>
+            <tr>
+                <td>&nbsp; Communication</td>
+                <td>&nbsp; {{stagier.Communication}} /3</td>
+            </tr>
+            <tr>
+                <td>&nbsp; Esprit d'analyse</td>
+                <td>&nbsp; {{stagier.Esprit}} /3</td>
+            </tr>
+            <tr>
+                <td>&nbsp; Connaissances professionnelles</td>
+                <td>&nbsp; {{stagier.Connaissances}} /6</td>
+            </tr>
+            <tr>
+                <td>&nbsp; Total</td>
+                <td>&nbsp; {{stagier.Total}} /20</td>
+            </tr>
+
+        </table>
+    </center>
+    <h4>Observations complémentaires sur le stagiaire</h4>
+    <textarea class="form-control" name="Observations" style="resize:none" cols="160"
+        rows="7">{{stagier.Observations }}</textarea><br>
+    <br>
+    <label for="">Fait a:</label><label>{{date }}</label><br>
+
+
+</body>
+
+</html>
